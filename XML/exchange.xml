@@ -1,4 +1,6 @@
-
+<!--
+Artifact File
+-->
 <Batch TransferSourceID="CRO101" TransferID="20160414100900" StudySystemID="ABC101" StudyID="ABC-101" SpecificationID="SPO101" TMFRMVersion="3.0" ChkSumStd="MD5">
 	<Object>
 			<ObjectID>PCO-AKT-101-MED-001</ObjectID>
@@ -41,4 +43,3 @@
 				<ReasonForChange>None</ReasonForChange>
 			</AuditRecord>
 	</Object>
-
