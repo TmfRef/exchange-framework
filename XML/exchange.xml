@@ -42,21 +42,3 @@
 			</AuditRecord>
 	</Object>
 
-			<Person>
-				<PersonID>ABC123</PersonID>
-				<Title>Dr</Title>
-				<FirstName>James</FirstName>
-				<LastName>Jones</LastName>
-			</Person>
-	
-	<Users>
-	<User OID="jsmith">
-		<FirstName>John</FirstName>
-		<LastName>Smith</LastName>
-	</User>
-	<User OID="pjones">
-		<FirstName>Penny</FirstName>
-		<LastName>Jones</LastName>
-	</User>
-</Users>	
-</Batch>
