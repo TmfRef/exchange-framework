@@ -6,7 +6,7 @@ Artifact File
         STUDYID="ATEM-0025"
         EVENTID="SAE-001"
         TRANSFERSOURCEID="CRO101"
-        TRANSFERID="UTC ISO 8601; 2016-04-13T14:00:25+00:00"
+        TRANSFERID="2016-04-13T14:00:25+00:00"
         SPECIFICATIONID="ABC-0235"
         TMFRMVERSION="3.0">
     <OBJECT>
@@ -24,7 +24,7 @@ Artifact File
         <OBJECTVERSIONLABEL>1.0</OBJECTVERSIONLABEL>
         <OBJECTVERSIONSTATE>Current</OBJECTVERSIONSTATE>
         <OBJECTTITLE>Phase 1 double blind comparative study protocol in Pancreatic Cancer</OBJECTTITLE>
-        <SUBARTIFACT></SUBARTIFACT>
+        <SUBARTIFACT>Pharmacist CV</SUBARTIFACT>
         <OBJECTCOPY>Yes</OBJECTCOPY>
         <OBJECTEXPIRYDATE>20-JAN-2001</OBJECTEXPIRYDATE>
         <OBJECTBLINDED>No</OBJECTBLINDED>
@@ -32,7 +32,7 @@ Artifact File
 
         <AUDITRECORD>
             <AUDITID>76533283</AUDITID>
-            <DATETIMESTAMP>UTC ISO 8601; 2016-04-13T14:00:25+00:00</DATETIMESTAMP>
+            <DATETIMESTAMP>2016-04-13T14:00:25+00:00</DATETIMESTAMP>
             <USERREF>jsmith</USERREF>
             <AUDITENTRYTYPE>New</AUDITENTRYTYPE>
             <REASONFORCHANGE>None</REASONFORCHANGE>
@@ -42,8 +42,8 @@ Artifact File
             <INTEGRITY>SHA256-81788ba0d7d02d81c063dbca621ba11b</INTEGRITY>
             <CHKSUMSTD>SHA256</CHKSUMSTD>
             <FILEFORMAT>.pdf</FILEFORMAT>
-            <FILENAME>SOP-CMC-001.pdf; Protocol_001.docx</FILENAME>
-            <FILEPATH>https://examplepharma/ProductA/GlobalDocumentsLibrary</FILEPATH>
+            <FILENAME>Protocol_001.docx</FILENAME>
+            <CONTENTURL>https://examplepharma/ProductA/GlobalDocumentsLibrary</CONTENTURL>
             <SIGNATURE UserOID="pjones">
                 <SIGNATUREMETHODOLOGY>Electronic</SIGNATUREMETHODOLOGY>
                 <SIGNATURENAME>John Smith</SIGNATURENAME>
