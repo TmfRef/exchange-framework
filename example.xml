@@ -43,13 +43,21 @@ Artifact File
             <CHKSUMSTD>SHA256</CHKSUMSTD>
             <FILEFORMAT>.pdf</FILEFORMAT>
             <FILENAME>Protocol_001.docx</FILENAME>
-            <CONTENTURL>https://examplepharma/ProductA/GlobalDocumentsLibrary</CONTENTURL>
+            <CONTENTURL>processzone/section/filename.ext</CONTENTURL>
             <SIGNATURE UserOID="pjones">
                 <SIGNATUREMETHODOLOGY>Electronic</SIGNATUREMETHODOLOGY>
                 <SIGNATURENAME>John Smith</SIGNATURENAME>
                 <SIGNATUREDATETIME>20-JAN-2001 08:12:25.46789 UTC</SIGNATUREDATETIME>
                 <SIGNATUREREASON>Approval</SIGNATUREREASON>
             </SIGNATURE>
+
+            <AUDITRECORD>
+                <AUDITID>76533283</AUDITID>
+                <DATETIMESTAMP>2016-04-13T14:00:25+00:00</DATETIMESTAMP>
+                <USERREF>jsmith</USERREF>
+                <AUDITENTRYTYPE>New</AUDITENTRYTYPE>
+                <REASONFORCHANGE>None</REASONFORCHANGE>
+            </AUDITRECORD>
         </FILE>
 
         <METADATA NAME="VISITTYPE">Routine</METADATA>
