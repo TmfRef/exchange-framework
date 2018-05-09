@@ -40,7 +40,7 @@
             <CONTENTURL>05/05.02/05.02.01.Medical License\PCO-AKT-101-MED-001.pdf</CONTENTURL>
             <FILEDESCRIPTION>Record</FILEDESCRIPTION>  
               
-            <SIGNATURE UserOID="pjones">
+            <SIGNATURE>
                 <SIGNATUREMETHODOLOGY>Electronic</SIGNATUREMETHODOLOGY>
                 <USEROID>jsmith</USEROID>
                 <SIGNATURENAME>John Smith</SIGNATURENAME>
