@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="BATCH">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="OBJECT">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="OBJECTID" type="xs:string"/>
+                            <xs:element name="OBJECTLEVEL" type="xs:string"/>
+                            <xs:element name="COUNTRYID" type="xs:string"/>
+                            <xs:element name="SITESYSTEMID" type="xs:string"/>
+                            <xs:element name="SITEID" type="xs:string"/>
+                            <xs:element name="UNIQUEID" type="xs:int"/>
+                            <xs:element name="ARTIFACTNUMBER" type="xs:string"/>
+                            <xs:element name="PERSONNAME" type="xs:string"/>
+                            <xs:element name="ORGANIZATIONNAME" type="xs:string"/>
+                            <xs:element name="OBJECTLANGUAGE" type="xs:string"/>
+                            <xs:element name="TRANSLATION" type="xs:string"/>
+                            <xs:element name="OBJECTVERSION" type="xs:decimal"/>
+                            <xs:element name="OBJECTVERSIONSTATE" type="xs:string"/>
+                            <xs:element name="OBJECTTITLE" type="xs:string"/>
+                            <xs:element name="SUBARTIFACT" type="xs:string"/>
+                            <xs:element name="OBJECTCOPY" type="xs:string"/>
+                            <xs:element name="OBJECTEXPIRYDATE" type="xs:string"/>
+                            <xs:element name="RESTRICTED" type="xs:string"/>
+                            <xs:element name="RENTENTIONDATE" type="xs:string"/>
+                            <xs:element name="ARTIFACTDATE" type="xs:date"/>
+                            <xs:element name="DATEDESCRIPTION" type="xs:string"/>
+                            <xs:element name="FILE">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="INTEGRITY" type="xs:string"/>
+                                        <xs:element name="CHKSUMSTD" type="xs:string"/>
+                                        <xs:element name="FILENAME" type="xs:string"/>
+                                        <xs:element name="CONTENTURL" type="xs:string"/>
+                                        <xs:element name="FILEDESCRIPTION" type="xs:string"/>
+                                        <xs:element name="SIGNATURE">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="SIGNATUREMETHODOLOGY" type="xs:string"/>
+                                                    <xs:element name="USEROID" type="xs:string"/>
+                                                    <xs:element name="SIGNATURENAME" type="xs:string"/>
+                                                    <xs:element name="SIGNATUREDATETIME" type="xs:string"/>
+                                                    <xs:element name="SIGNATUREREASON" type="xs:string"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="AUDITRECORD">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="AUDITID" type="xs:int"/>
+                                                    <xs:element name="DATETIMESTAMP" type="xs:string"/>
+                                                    <xs:element name="USERREF" type="xs:string"/>
+                                                    <xs:element name="AUDITENTRYTYPE" type="xs:string"/>
+                                                    <xs:element name="AUDITEVENT" type="xs:string"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="METADATA" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute name="NAME" type="xs:string" use="required"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="STUDYSYSTEMID" type="xs:string"/>
+            <xs:attribute name="STUDYID" type="xs:string"/>
+            <xs:attribute name="EVENTID" type="xs:string"/>
+            <xs:attribute name="TRANSFERSOURCEID" type="xs:string"/>
+            <xs:attribute name="TRANSFERID" type="xs:long"/>
+            <xs:attribute name="SPECIFICATIONID" type="xs:string"/>
+            <xs:attribute name="TMFRMVERSION" type="xs:decimal"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
