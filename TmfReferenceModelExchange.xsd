@@ -5,35 +5,183 @@
     https://docs.google.com/document/d/12RPl_X8bxb6_ynAindfmmL8GxM7j8nM8RZJGrjRmhh0/
 -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:simpleType name="level">
+        <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="Trial" />
+            <xs:enumeration value="Country" />
+            <xs:enumeration value="Site" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="boolean">
+        <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="Yes" />
+            <xs:enumeration value="No" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="state">
+        <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="Current" />
+            <xs:enumeration value="Superseded" />
+            <xs:enumeration value="Obsolete" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="dateOnly">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\d{2}-[a-zA-Z]{3}-\d{4}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
     <!-- Section 5.3.1 <BATCH> Tag -->
     <xs:element name="BATCH">
         <xs:complexType>
             <xs:sequence>
+                <!-- Section 5.3.2 <OBJECT> Tag -->
                 <xs:element name="OBJECT">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="OBJECTID" type="xs:string"/>
-                            <xs:element name="OBJECTLEVEL" type="xs:string"/>
-                            <xs:element name="COUNTRYID" type="xs:string"/>
-                            <xs:element name="SITESYSTEMID" type="xs:string"/>
-                            <xs:element name="SITEID" type="xs:string"/>
-                            <xs:element name="UNIQUEID" type="xs:int"/>
-                            <xs:element name="ARTIFACTNUMBER" type="xs:string"/>
-                            <xs:element name="PERSONNAME" type="xs:string"/>
-                            <xs:element name="ORGANIZATIONNAME" type="xs:string"/>
-                            <xs:element name="OBJECTLANGUAGE" type="xs:string"/>
-                            <xs:element name="TRANSLATION" type="xs:string"/>
-                            <xs:element name="OBJECTVERSION" type="xs:decimal"/>
-                            <xs:element name="OBJECTVERSIONSTATE" type="xs:string"/>
-                            <xs:element name="OBJECTTITLE" type="xs:string"/>
-                            <xs:element name="SUBARTIFACT" type="xs:string"/>
-                            <xs:element name="OBJECTCOPY" type="xs:string"/>
-                            <xs:element name="OBJECTEXPIRYDATE" type="xs:string"/>
-                            <xs:element name="RESTRICTED" type="xs:string"/>
-                            <xs:element name="RENTENTIONDATE" type="xs:string"/>
-                            <xs:element name="ARTIFACTDATE" type="xs:date"/>
-                            <xs:element name="DATEDESCRIPTION" type="xs:string"/>
-                            <xs:element name="FILE">
+                            <!-- Attribute Format: Text -->
+                            <xs:element name="OBJECTID" type="xs:string">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:minLength value="1"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+
+                            <!-- Attribute Format: Text (Trial, Country, Site) -->
+                            <xs:element name="OBJECTLEVEL" type="level" />
+
+                            <!-- Attribute Format: ISO-3166 Alpha-3 i.e. CAN, FRA etc.
+                                 Mandatory - No – Only for country or site level documents
+                             -->
+                            <xs:element name="COUNTRYID" minOccurs="0">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:pattern value="[A-Z]{3}"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+
+                            <!-- Attribute Format: Text
+                                 Mandatory - No – Only for country or site level documents
+                             -->
+                            <xs:element name="SITESYSTEMID" minOccurs="0">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:minLength value="1"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+
+                            <!-- Attribute Format: Text
+                                 Mandatory - No – Only for country or site level documents
+                             -->
+                            <xs:element name="SITEID" minOccurs="0">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:minLength value="1"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+
+                            <!-- Attribute Format: Number on 3 digits i.e. 001, 010-->
+                            <xs:element name="UNIQUEID">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:int">
+                                        <xs:pattern value="[0-9]{3}"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+
+                            <!-- Attribute Format: Text i.e. 01.01.01 -->
+                            <xs:element name="ARTIFACTNUMBER" type="xs:string">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:pattern value="[0-9]{2}.[0-9]{2}.[0-9]{2}"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+
+                            <!-- Attribute Format: Text
+                                 Optional (Blanks Allowed)
+                             -->
+                            <xs:element name="PERSONNAME" type="xs:string" minOccurs="0" />
+
+                            <!-- Attribute Format: Text
+                                 Optional (Blanks Allowed)
+                             -->
+                            <xs:element name="ORGANIZATIONNAME" type="xs:string" minOccurs="0"/>
+
+                            <!-- Attribute Format: ISO 639 2 letter language code i.e. en, fr
+                                 Optional
+                             -->
+                            <xs:element name="OBJECTLANGUAGE" type="xs:string" minOccurs="0">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:pattern value="aa|ab|ae|af|ak|am|an|ar|as|av|ay|az|ba|be|bg|bh|bi|bm|bn|bo|br|bs|ca|ce|ch|co|cr|cs|cu|cv|cy|da|de|dv|dz|ee|el|en|eo|es|et|eu|fa|ff|fi|fj|fo|fr|fy|ga|gd|gl|gn|gu|gv|ha|he|hi|ho|hr|ht|hu|hy|hz|ia|id|ie|ig|ii|ik|io|is|it|iu|ja|jv|ka|kg|ki|kj|kk|kl|km|kn|ko|kr|ks|ku|kv|kw|ky|la|lb|lg|li|ln|lo|lt|lu|lv|mg|mh|mi|mk|ml|mn|mr|ms|mt|my|na|nb|nd|ne|ng|nl|nn|no|nr|nv|ny|oc|oj|om|or|os|pa|pi|pl|ps|pt|qu|rm|rn|ro|ru|rw|sa|sc|sd|se|sg|si|sk|sl|sm|sn|so|sq|sr|ss|st|su|sv|sw|ta|te|tg|th|ti|tk|tl|tn|to|tr|ts|tt|tw|ty|ug|uk|ur|uz|ve|vi|vo|wa|wo|xh|yi|yo|za|zh|zu"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+
+                            <!-- Attribute Format: Yes/No
+                                 Optional
+                             -->
+                            <xs:element name="TRANSLATION" type="boolean" minOccurs="0"/>
+
+                            <!-- Attribute Format: Text -->
+                            <xs:element name="OBJECTVERSION" type="xs:string">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:minLength value="1"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+
+                            <!-- Attribute Format: Choice Current; Superseded; Obsolete -->
+                            <xs:element name="OBJECTVERSIONSTATE" type="state"/>
+
+                            <!-- Attribute Format: Text
+                                 Optional (Blanks Allowed)
+                             -->
+                            <xs:element name="OBJECTTITLE" type="xs:string" minOccurs="0"/>
+
+                            <!-- Attribute Format: Text
+                                 Optional (Blanks Allowed)
+                             -->
+                            <xs:element name="SUBARTIFACT" type="xs:string" minOccurs="0"/>
+
+                            <!-- Attribute Format: Yes/No -->
+                            <xs:element name="OBJECTCOPY" type="boolean"/>
+
+                            <!-- Attribute Format: Date (DD-MON-YYYY)
+                                 Optional
+                             -->
+                            <xs:element name="OBJECTEXPIRYDATE" type="dateOnly" minOccurs="0"/>
+
+                            <!-- Attribute Format: YES/NO
+                                 Optional
+                             -->
+                            <xs:element name="RESTRICTED" type="boolean" minOccurs="0"/>
+
+                            <!-- Attribute Format: Date (DD-MON-YYYY)
+                                 Optional
+                             -->
+                            <xs:element name="RENTENTIONDATE" type="dateOnly"/>
+
+                            <!-- Attribute Format: Date (DD-MON-YYYY)
+                                 Optional
+                             -->
+                            <xs:element name="ARTIFACTDATE" type="dateOnly"/>
+
+                            <!-- Attribute Format: Text
+                                 Optional (Blanks Allowed)
+                             -->
+                            <xs:element name="DATEDESCRIPTION" type="xs:string" minOccurs="0"/>
+
+                            <xs:element name="FILE" minOccurs="1" maxOccurs="unbounded">
                                 <xs:complexType>
                                     <xs:sequence>
                                         <xs:element name="INTEGRITY" type="xs:string"/>
@@ -83,23 +231,47 @@
             <!-- Attribute Format: UUID/Text -->
             <xs:attribute name="STUDYSYSTEMID" type="xs:string"/>
 
-            <!-- Attribute Format: Text -->
-            <xs:attribute name="STUDYID" type="xs:string" use="required"/>
+            <!-- Attribute Format: Text (mandatory) -->
+            <xs:attribute name="STUDYID" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
 
             <!-- Attribute Format: Text -->
             <xs:attribute name="EVENTID" type="xs:string"/>
 
-            <!-- Attribute Format: Text -->
-            <xs:attribute name="TRANSFERSOURCEID" type="xs:string" use="required"/>
+            <!-- Attribute Format: Text (mandatory) -->
+            <xs:attribute name="TRANSFERSOURCEID" type="xs:string" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
 
-            <!-- Attribute Format: Text -->
-            <xs:attribute name="TRANSFERID" type="xs:long" use="required"/>
+            <!-- Attribute Format: Text (mandatory) -->
+            <xs:attribute name="TRANSFERID" type="xs:long" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
 
-            <!-- Attribute Format: Text -->
-            <xs:attribute name="SPECIFICATIONID" type="xs:string" use="required"/>
+            <!-- Attribute Format: Text (mandatory) -->
+            <xs:attribute name="SPECIFICATIONID" type="xs:string" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
 
-            <!-- Attribute Format: Text (1.0, 2.0, 3.0 etc.) -->
-            <!-- TODO: DECIMAL? REGEX? -->
+            <!-- Attribute Format: Text (mandatory - 1.0, 2.0, 3.0 etc.)
+                 NOTE: we specify decimal as the data type, which supports 1.0 but not 1.0.0 -->
             <xs:attribute name="TMFRMVERSION" type="xs:decimal" use="required"/>
         </xs:complexType>
     </xs:element>
