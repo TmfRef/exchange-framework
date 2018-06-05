@@ -34,9 +34,33 @@
         </xs:restriction>
     </xs:simpleType>
 
+    <xs:simpleType name="sigType">
+        <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="Electronic" />
+            <xs:enumeration value="Digital" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="auditType">
+        <xs:restriction base="xs:NMTOKEN">
+            <xs:enumeration value="New" />
+            <xs:enumeration value="change" />
+            <xs:enumeration value="delete" />
+            <xs:enumeration value="other" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- dd-MMM-yyyy -->
     <xs:simpleType name="dateOnly">
         <xs:restriction base="xs:string">
             <xs:pattern value="\d{2}-[a-zA-Z]{3}-\d{4}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- UTC ISO 8601; i.e.. 2016-04-13T14:00:25+00:00 -->
+    <xs:simpleType name="isoDateTime">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})[+-](\d{2}):(\d{2})"/>
         </xs:restriction>
     </xs:simpleType>
 
@@ -167,30 +191,61 @@
                             <xs:element name="FILE" minOccurs="1" maxOccurs="unbounded">
                                 <xs:complexType>
                                     <xs:sequence>
-                                        <xs:element name="INTEGRITY" type="xs:string"/>
-                                        <xs:element name="CHKSUMSTD" type="xs:string"/>
-                                        <xs:element name="FILENAME" type="xs:string"/>
-                                        <xs:element name="CONTENTURL" type="xs:string"/>
-                                        <xs:element name="FILEDESCRIPTION" type="xs:string"/>
+                                        <!-- Attribute Format: Text (based on emerging SRI standard https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) -->
+                                        <xs:element name="INTEGRITY" type="nonEmptyString"/>
+
+                                        <!-- Attribute Format: Text -->
+                                        <xs:element name="CHKSUMSTD" type="nonEmptyString"/>
+
+                                        <!-- Attribute Format: Text -->
+                                        <xs:element name="FILENAME" type="nonEmptyString"/>
+
+                                        <!-- Attribute Format: URL -->
+                                        <xs:element name="CONTENTURL" type="xs:anyURI"/>
+
+                                        <!-- Attribute Format: Text -->
+                                        <xs:element name="FILEDESCRIPTION" type="xs:string" minOccurs="0"/>
+
+                                        <!-- 5.3.4 <SIGNATURE> TAG -->
                                         <xs:element name="SIGNATURE">
                                             <xs:complexType>
                                                 <xs:sequence>
-                                                    <xs:element name="SIGNATUREMETHODOLOGY" type="xs:string"/>
-                                                    <xs:element name="USEROID" type="xs:string"/>
-                                                    <xs:element name="SIGNATURENAME" type="xs:string"/>
-                                                    <xs:element name="SIGNATUREDATETIME" type="xs:string"/>
-                                                    <xs:element name="SIGNATUREREASON" type="xs:string"/>
+                                                    <!-- Attribute Format: Choice: Electronic, Digital -->
+                                                    <xs:element name="SIGNATUREMETHODOLOGY" type="sigType"/>
+
+                                                    <!-- Attribute Format: Text -->
+                                                    <xs:element name="USEROID" type="nonEmptyString"/>
+
+                                                    <!-- Attribute Format: Text -->
+                                                    <xs:element name="SIGNATURENAME" type="nonEmptyString"/>
+
+                                                    <!-- Attribute Format: UTC ISO 8601; i.e.. 2016-04-13T14:00:25+00:00 -->
+                                                    <xs:element name="SIGNATUREDATETIME" type="isoDateTime"/>
+
+                                                    <!-- Attribute Format: Text -->
+                                                    <xs:element name="SIGNATUREREASON" type="nonEmptyString"/>
                                                 </xs:sequence>
                                             </xs:complexType>
                                         </xs:element>
+
+                                        <!-- 5.3.5 <AUDITRECORD> Tag -->
                                         <xs:element name="AUDITRECORD">
                                             <xs:complexType>
                                                 <xs:sequence>
-                                                    <xs:element name="AUDITID" type="xs:int"/>
-                                                    <xs:element name="DATETIMESTAMP" type="xs:string"/>
-                                                    <xs:element name="USERREF" type="xs:string"/>
-                                                    <xs:element name="AUDITENTRYTYPE" type="xs:string"/>
-                                                    <xs:element name="AUDITEVENT" type="xs:string"/>
+                                                    <!-- Attribute Format: Text -->
+                                                    <xs:element name="AUDITID" type="nonEmptyString"/>
+
+                                                    <!-- Attribute Format: UTC ISO 8601; i.e.. 2016-04-13T14:00:25+00:00 -->
+                                                    <xs:element name="DATETIMESTAMP" type="isoDateTime"/>
+
+                                                    <!-- Attribute Format: Text -->
+                                                    <xs:element name="USERREF" type="nonEmptyString"/>
+
+                                                    <!-- Attribute Format: Text -->
+                                                    <xs:element name="AUDITENTRYTYPE" type="auditType"/>
+
+                                                    <!-- Attribute Format: Text -->
+                                                    <xs:element name="AUDITEVENT" type="nonEmptyString"/>
                                                 </xs:sequence>
                                             </xs:complexType>
                                         </xs:element>
