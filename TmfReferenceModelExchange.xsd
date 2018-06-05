@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!--
+    See 1.0 eTMF Exchange Mechanism Standard
+    https://docs.google.com/document/d/12RPl_X8bxb6_ynAindfmmL8GxM7j8nM8RZJGrjRmhh0/
+-->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <!-- Section 5.3.1 <BATCH> Tag -->
     <xs:element name="BATCH">
         <xs:complexType>
             <xs:sequence>
@@ -74,13 +79,28 @@
                     </xs:complexType>
                 </xs:element>
             </xs:sequence>
+
+            <!-- Attribute Format: UUID/Text -->
             <xs:attribute name="STUDYSYSTEMID" type="xs:string"/>
-            <xs:attribute name="STUDYID" type="xs:string"/>
+
+            <!-- Attribute Format: Text -->
+            <xs:attribute name="STUDYID" type="xs:string" use="required"/>
+
+            <!-- Attribute Format: Text -->
             <xs:attribute name="EVENTID" type="xs:string"/>
-            <xs:attribute name="TRANSFERSOURCEID" type="xs:string"/>
-            <xs:attribute name="TRANSFERID" type="xs:long"/>
-            <xs:attribute name="SPECIFICATIONID" type="xs:string"/>
-            <xs:attribute name="TMFRMVERSION" type="xs:decimal"/>
+
+            <!-- Attribute Format: Text -->
+            <xs:attribute name="TRANSFERSOURCEID" type="xs:string" use="required"/>
+
+            <!-- Attribute Format: Text -->
+            <xs:attribute name="TRANSFERID" type="xs:long" use="required"/>
+
+            <!-- Attribute Format: Text -->
+            <xs:attribute name="SPECIFICATIONID" type="xs:string" use="required"/>
+
+            <!-- Attribute Format: Text (1.0, 2.0, 3.0 etc.) -->
+            <!-- TODO: DECIMAL? REGEX? -->
+            <xs:attribute name="TMFRMVERSION" type="xs:decimal" use="required"/>
         </xs:complexType>
     </xs:element>
 </xs:schema>
