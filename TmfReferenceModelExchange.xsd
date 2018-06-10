@@ -57,13 +57,6 @@
         </xs:restriction>
     </xs:simpleType>
 
-    <!-- UTC ISO 8601; i.e.. 2016-04-13T14:00:25+00:00 -->
-    <xs:simpleType name="isoDateTime">
-        <xs:restriction base="xs:string">
-            <xs:pattern value="(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})[+-](\d{2}):(\d{2})"/>
-        </xs:restriction>
-    </xs:simpleType>
-
     <!-- Section 5.3.1 <BATCH> Tag -->
     <xs:element name="BATCH">
         <xs:complexType>
@@ -220,7 +213,7 @@
                                                     <xs:element name="SIGNATURENAME" type="nonEmptyString"/>
 
                                                     <!-- Attribute Format: UTC ISO 8601; i.e.. 2016-04-13T14:00:25+00:00 -->
-                                                    <xs:element name="SIGNATUREDATETIME" type="isoDateTime"/>
+                                                    <xs:element name="SIGNATUREDATETIME" type="xs:dateTime"/>
 
                                                     <!-- Attribute Format: Text -->
                                                     <xs:element name="SIGNATUREREASON" type="nonEmptyString"/>
@@ -236,7 +229,7 @@
                                                     <xs:element name="AUDITID" type="nonEmptyString"/>
 
                                                     <!-- Attribute Format: UTC ISO 8601; i.e.. 2016-04-13T14:00:25+00:00 -->
-                                                    <xs:element name="DATETIMESTAMP" type="isoDateTime"/>
+                                                    <xs:element name="DATETIMESTAMP" type="xs:dateTime"/>
 
                                                     <!-- Attribute Format: Text -->
                                                     <xs:element name="USERREF" type="nonEmptyString"/>
