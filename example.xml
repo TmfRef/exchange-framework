@@ -3,7 +3,8 @@
 <!--Exchange File Template-->
 <BATCH
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="TmfReferenceModelExchange.xsd"
+        xmlns="https://tmfrefmodel.com/ems"
+        xsi:schemaLocation="https://tmfrefmodel.com/ems TmfReferenceModelExchange.xsd"
 
         STUDYSYSTEMID="ATEM0025"
         STUDYID="ATEM-0025"
