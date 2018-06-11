@@ -4,7 +4,11 @@
     See 1.0 eTMF Exchange Mechanism Standard
     https://docs.google.com/document/d/12RPl_X8bxb6_ynAindfmmL8GxM7j8nM8RZJGrjRmhh0/
 -->
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="https://tmfrefmodel.com/ems"
+           targetNamespace="https://tmfrefmodel.com/ems"
+           elementFormDefault="qualified">
+
     <xs:simpleType name="nonEmptyString">
         <xs:restriction base="xs:string">
             <xs:minLength value="1"/>
