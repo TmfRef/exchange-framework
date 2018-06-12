@@ -48,9 +48,9 @@
     <xs:simpleType name="auditType">
         <xs:restriction base="xs:NMTOKEN">
             <xs:enumeration value="New" />
-            <xs:enumeration value="change" />
-            <xs:enumeration value="delete" />
-            <xs:enumeration value="other" />
+            <xs:enumeration value="Change" />
+            <xs:enumeration value="Delete" />
+            <xs:enumeration value="Other" />
         </xs:restriction>
     </xs:simpleType>
 
@@ -190,9 +190,6 @@
                                     <xs:sequence>
                                         <!-- Attribute Format: Text (based on emerging SRI standard https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) -->
                                         <xs:element name="INTEGRITY" type="nonEmptyString"/>
-
-                                        <!-- Attribute Format: Text -->
-                                        <xs:element name="CHKSUMSTD" type="nonEmptyString"/>
 
                                         <!-- Attribute Format: Text -->
                                         <xs:element name="FILENAME" type="nonEmptyString"/>
