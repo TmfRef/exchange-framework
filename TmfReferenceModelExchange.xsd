@@ -66,7 +66,7 @@
         <xs:complexType>
             <xs:sequence>
                 <!-- Section 5.3.2 <OBJECT> Tag -->
-                <xs:element name="OBJECT">
+                <xs:element name="OBJECT" minOccurs="1" maxOccurs="unbounded">
                     <xs:complexType>
                         <xs:sequence>
                             <!-- Attribute Format: Text -->
