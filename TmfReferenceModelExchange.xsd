@@ -96,14 +96,8 @@
                              -->
                             <xs:element name="SITEID" type="nonEmptyString" minOccurs="0"/>
 
-                            <!-- Attribute Format: Number on 3 digits i.e. 001, 010-->
-                            <xs:element name="UNIQUEID">
-                                <xs:simpleType>
-                                    <xs:restriction base="xs:int">
-                                        <xs:pattern value="[0-9]{3}"/>
-                                    </xs:restriction>
-                                </xs:simpleType>
-                            </xs:element>
+                            <!-- Attribute Format: Int-->
+                            <xs:element name="UNIQUEID" type="xs:int"/>
 
                             <!-- Attribute Format: Text i.e. 01.01.01 -->
                             <xs:element name="ARTIFACTNUMBER">
