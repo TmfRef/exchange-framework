@@ -117,7 +117,7 @@
                             <!-- Attribute Format: Text
                                  Optional (Blanks Allowed)
                              -->
-                            <xs:element name="PERSONNAME" type="xs:string" minOccurs="0" />
+                            <xs:element name="PERSONNAME" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
 
                             <!-- Attribute Format: Text
                                  Optional (Blanks Allowed)
