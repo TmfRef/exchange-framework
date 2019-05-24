@@ -99,7 +99,7 @@
                             <!-- Attribute Format: Number on 3 digits i.e. 001, 010-->
                             <xs:element name="UNIQUEID">
                                 <xs:simpleType>
-                                    <xs:restriction base="xs:int">
+                                    <xs:restriction base="xs:string">
                                         <xs:pattern value="[0-9]{3}"/>
                                     </xs:restriction>
                                 </xs:simpleType>
