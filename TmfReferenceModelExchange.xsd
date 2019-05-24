@@ -223,7 +223,7 @@
                                         </xs:element>
 
                                         <!-- 5.3.5 <AUDITRECORD> Tag -->
-                                        <xs:element name="AUDITRECORD">
+                                        <xs:element name="AUDITRECORD" minOccurs="0" maxOccurs="unbounded">
                                             <xs:complexType>
                                                 <xs:sequence>
                                                     <!-- Attribute Format: Text -->
