@@ -272,9 +272,14 @@
             <!-- Attribute Format: Text (mandatory) -->
             <xs:attribute name="SPECIFICATIONID" type="nonEmptyString" use="required"/>
 
-            <!-- Attribute Format: Text (mandatory - 1.0, 2.0, 3.0 etc.)
-                 NOTE: we specify decimal as the data type, which supports 1.0 but not 1.0.0 -->
-            <xs:attribute name="TMFRMVERSION" type="xs:decimal" use="required"/>
+            <!-- Attribute Format: Text (mandatory - supports 1.0 and 1.0.0 format) -->
+            <xs:attribute name="TMFRMVERSION" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[0-9]{1,2}\.[0-9]{1,2}\.[0-9]{1,2}|[0-9]{1,2}\.[0-9]{1,2}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
         </xs:complexType>
     </xs:element>
 </xs:schema>
